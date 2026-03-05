@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html ng-app="regApp">
+
+<head>
+    <title>User Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+
+<body ng-controller="regCtrl">
+
+<h2>User Registration Form</h2>
+
+<form>
+    Username:
+    <input type="text" ng-model="user.name">
+    <br><br>
+
+    User ID:
+    <input type="text" ng-model="user.id">
+    <br><br>
+
+    Password:
+    <input type="password" ng-model="user.password">
+    <br><br>
+
+    Location:
+    <select ng-model="user.location">
+        <option value="">Select</option>
+        <option>Pune</option>
+        <option>Mumbai</option>
+        <option>Nashik</option>
+    </select>
+    <br><br>
+
+    Gender:
+    <input type="radio" ng-model="user.gender" value="Male"> Male
+    <input type="radio" ng-model="user.gender" value="Female"> Female
+    <br><br>
+
+    Mobile No:
+    <input type="text" ng-model="user.mobile">
+    <br><br>
+
+    <button type="button" ng-click="validate()">Submit</button>
+</form>
+
+<p class="error">{{errorMsg}}</p>
+<p class="success">{{successMsg}}</p>
+
+<script>
+var app = angular.module("regApp", []);
+
+app.controller("regCtrl", function ($scope) {
+
+    $scope.validate = function () {
+
+        $scope.errorMsg = "";
+        $scope.successMsg = "";
+
+        if (!$scope.user || !$scope.user.name) {
+            $scope.errorMsg = "Username is required";
+            return;
+        }
+
+        if (!$scope.user.id) {
+            $scope.errorMsg = "User ID is required";
+            return;
+        }
+
+        if (!$scope.user.password) {
+            $scope.errorMsg = "Password is required";
+            return;
+        }
+
+        if (!$scope.user.location) {
+            $scope.errorMsg = "Please select location";
+            return;
+        }
+
+        if (!$scope.user.gender) {
+            $scope.errorMsg = "Please select gender";
+            return;
+        }
+
+        if (!$scope.user.mobile || $scope.user.mobile.length != 10) {
+            $scope.errorMsg = "Mobile number must be 10 digits";
+            return;
+        }
+
+        $scope.successMsg = "Form Submitted Successfully";
+    };
+
+});
+</script>
+
+</body>
+</html>

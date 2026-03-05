@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="empApp">
+<head>
+<title>Employee Registration Form</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+<style>
+.error {
+color: red;
+font-size: 14px;
+}
+</style>
+</head>
+<body ng-controller="empCtrl">
+<h2>New Employee Registration Form</h2>
+<form name="empForm" novalidate>
+<!-- Name -->
+Name:
+<input type="text" name="ename" ng-model="emp.name" required>
+<br>
+<span class="error" ng-show="empForm.ename.$touched && empForm.ename.$invalid">
+Name is required
+</span>
+<br><br>
+<!-- Email -->
+Email:
+<input type="email" name="email" ng-model="emp.email" required>
+<br>
+<span class="error" ng-show="empForm.email.$touched && empForm.email.$error.required">
+Email is required
+</span>
+<span class="error" ng-show="empForm.email.$touched && empForm.email.$error.email">
+Invalid Email format
+</span>
+<br><br>
+<!-- Gender -->
+Gender:
+<input type="radio" ng-model="emp.gender" name="gender" value="Male" required> Male
+<input type="radio" ng-model="emp.gender" name="gender" value="Female"> Female
+<br>
+<span class="error" ng-show="empForm.gender.$touched && empForm.gender.$invalid">
+Please select gender
+</span>
+<br><br>
+<!-- Department -->
+Department:
+<select name="dept" ng-model="emp.dept" required>
+<option value="">Select Department</option>
+<option>HR</option>
+<option>IT</option>
+<option>Finance</option>
+</select>
+<br>
+<span class="error" ng-show="empForm.dept.$touched && empForm.dept.$invalid">
+Please select department
+</span>
+<br><br>
+<!-- Submit -->
+<button type="submit"
+ng-disabled="empForm.$invalid">
+Register
+</button>
+</form>
+<script>
+var app = angular.module("empApp", []);
+app.controller("empCtrl", function ($scope) {
+$scope.emp = {};
+});
+</script>
+</body>
+</html>
