@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Flexible Date Formatter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+    <h2>Universal Date Formatter</h2>
+    <input type="text" ng-model="rawDate" placeholder="Enter date here"><br><br>
+    <button ng-click="processDate()"> SUBMIT </button>
+    <hr>
+    <div ng-if="formattedDate">
+        <p><b>Original Input:</b> {{ rawDate }}</p>
+        <p><b>Formatted Result:</b> {{ formattedDate | date : 'MM/dd/yyyy' }}</p>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            $scope.processDate = function () {
+                if ($scope.rawDate) {
+                    // Convert the random string into a JS Date object
+                    var dateObj = new Date($scope.rawDate);
+                    // Check if the input was a valid date
+                    if (!isNaN(dateObj.getTime())) {
+                        $scope.formattedDate = dateObj;
+                    } else {
+                        alert("Invalid Date Format! Please try: YYYY/MM/DD or MM/DD/YYYY");
+                        $scope.formattedDate = null;
+                    }
+                }
+            };
+        });
+    </script>
+</body>
+
+</html>

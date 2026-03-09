@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Employee Table</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        table {
+            width: 80%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #000;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #ddd;
+        }
+
+        .odd-row {
+            background: lightgreen;
+        }
+    </style>
+</head>
+
+<body ng-controller="tableCtrl">
+    <h2 style="text-align:center;">Employee Data</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Salary</th>
+            <th>Location</th>
+        </tr>
+        <tr ng-repeat="e in employees" ng-class-odd="'odd-row'">
+            <td>{{e.id}}</td>
+            <td>{{e.name}}</td>
+            <td>{{e.dept}}</td>
+            <td>{{e.salary}}</td>
+            <td>{{e.location}}</td>
+        </tr>
+    </table>
+    <script>
+        angular.module("myApp", [])
+            .controller("tableCtrl", function ($scope) {
+                $scope.employees = [
+                    { id: 1, name: "Amit", dept: "HR", salary: 25000, location: "Pune" },
+                    { id: 2, name: "Riya", dept: "IT", salary: 30000, location: "Mumbai" },
+                    { id: 3, name: "Kunal", dept: "Finance", salary: 28000, location: "Nashik" },
+                    { id: 4, name: "Sneha", dept: "Accounts", salary: 27000, location: "Pune" },
+                    { id: 5, name: "Rohan", dept: "Sales", salary: 26000, location: "Nagpur" },
+                    { id: 6, name: "Neha", dept: "IT", salary: 32000, location: "Mumbai" },
+                    { id: 7, name: "Pooja", dept: "HR", salary: 24000, location: "Pune" },
+                    { id: 8, name: "Ajay", dept: "Admin", salary: 23000, location: "Solapur" },
+                    { id: 9, name: "Vinay", dept: "Support", salary: 22000, location: "Kolhapur" },
+                    { id: 10, name: "Meera", dept: "Marketing", salary: 29000, location: "Aurangabad" }
+                ];
+            });
+    </script>
+</body>
+
+</html>

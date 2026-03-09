@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Staff Details</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        table {
+            width: 75%;
+            margin: auto;
+            border-collapse: collapse;
+            font-family: Arial;
+        }
+
+        th,
+        td {
+            border: 1px solid #333;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #e0e0e0;
+        }
+
+        .even-row {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body ng-controller="tableCtrl">
+    <h2 style="text-align:center;">Staff Details</h2>
+    <table>
+        <tr>
+            <th>Staff ID</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Department</th>
+        </tr>
+        <tr ng-repeat="s in staff" ng-class-even="'even-row'">
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.desig}}</td>
+            <td>{{s.dept}}</td>
+        </tr>
+    </table>
+    <script>
+        angular.module("myApp", [])
+            .controller("tableCtrl", function ($scope) {
+                $scope.staff = [
+                    { id: 1, name: "Sanket", desig: "Lecturer", dept: "Computer" },
+                    { id: 2, name: "Pranali", desig: "Instructor", dept: "IT" },
+                    { id: 3, name: "Akash", desig: "Clerk", dept: "Office" },
+                    { id: 4, name: "Pallavi", desig: "Accountant", dept: "Accounts" },
+                    { id: 5, name: "Ritesh", desig: "Supervisor", dept: "Workshop" },
+                    { id: 6, name: "Kavita", desig: "Librarian", dept: "Library" },
+                    { id: 7, name: "Nikhil", desig: "Assistant", dept: "Admin" },
+                    { id: 8, name: "Shruti", desig: "Lab Assistant", dept: "Computer" },
+                    { id: 9, name: "Yogesh", desig: "Peon", dept: "Office" },
+                    { id: 10, name: "Mayuri", desig: "Instructor", dept: "IT" }
+                ];
+            });
+    </script>
+</body>
+
+</html>

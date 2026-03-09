@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Nested Controller Example</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="parentCtrl">
+    <h2>Employee Details Using Nested Controller</h2>
+    <p><b>Name:</b> {{name}}</p>
+    <p><b>Employee ID:</b> {{empid}}</p>
+    <p><b>Department:</b> {{dept}}</p>
+    <!-- Child Controller -->
+    <div ng-controller="childCtrl">
+        <p><b>Salary:</b> {{salary}}</p>
+        <p><b>Location:</b> {{location}}</p>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("parentCtrl", function ($scope) {
+            $scope.name = "Sanket";
+            $scope.empid = 501;
+            $scope.dept = "IT";
+        });
+        app.controller("childCtrl", function ($scope) {
+            $scope.salary = 35000;
+            $scope.location = "Pune";
+        });
+    </script>
+</body>
+
+</html>

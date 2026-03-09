@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Case Converter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+    <input type="text" ng-model="inputText" placeholder="Enter text here"><br><br>
+    <button ng-click="submitData()">Submit</button>
+    <div ng-if="result">
+        <p><b>UPPERCASE:</b> {{ result.upper }}</p>
+        <p><b>lowercase:</b> {{ result.lower }}</p>
+        <p><b>Sentence case:</b> {{ result.sentence }}</p>
+        <p><b>Title Case:</b> {{ result.title }}</p>
+    </div>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope) {
+            // This function runs only when the button is clicked
+            $scope.submitData = function () {
+                if (!$scope.inputText) return;
+                // Store the processed data into a result object
+                $scope.result = {
+                    upper: $scope.inputText.toUpperCase(),
+                    lower: $scope.inputText.toLowerCase(),
+                    sentence: $scope.sentenceCase($scope.inputText),
+                    title: $scope.titleCase($scope.inputText)
+                };
+            };
+            $scope.sentenceCase = function (str) {
+                if (!str) return "";
+                return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+            };
+            $scope.titleCase = function (str) {
+                if (!str) return "";
+                return str.toLowerCase().split(' ').map(function (word) {
+                    return word.charAt(0).toUpperCase() + word.slice(1);
+                }).join(' ');
+            };
+        });
+    </script>
+</body>
+
+</html>

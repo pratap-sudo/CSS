@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="textApp">
+
+<head>
+    <title>Uppercase and Lowercase Filter</title>
+
+    <!-- AngularJS Library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- External Controller File -->
+    <script src="q3.js"></script>
+</head>
+
+<body ng-controller="textController">
+
+    <h2>AngularJS Filters Example</h2>
+
+    <p>Original Text: {{message}}</p>
+
+    <p>Uppercase: {{message | uppercase}}</p>
+
+    <p>Lowercase: {{message | lowercase}}</p>
+
+</body>
+
+</html>

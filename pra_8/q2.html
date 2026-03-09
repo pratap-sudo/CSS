@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>Currency Filter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+</head>
+
+<body ng-controller="myCtrl">
+
+    <h2>Currency Formatter</h2>
+
+    <input type="number" ng-model="amountInput" placeholder="Enter amount (e.g. 555)">
+    <br><br>
+
+    <button ng-click="process()">Submit</button>
+
+    <hr>
+
+    <div ng-if="outputValue">
+        <p><b>Output:</b> {{ outputValue | currency:"₹" }}</p>
+    </div>
+
+    <script>
+        var app = angular.module("myApp", []);
+
+        app.controller("myCtrl", function ($scope) {
+
+            $scope.process = function () {
+                $scope.outputValue = $scope.amountInput;
+            };
+
+        });
+    </script>
+
+</body>
+
+</html>
