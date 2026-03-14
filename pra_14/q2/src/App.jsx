@@ -2,30 +2,26 @@ import React, { useState } from "react";
 
 function App() {
 
-  // Object to store multiple fields
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: ""
   });
 
-  // Dynamic input handler
-  const handleChange = (event) => {
-    const { name, value } = event.target;
+  const [submitted, setSubmitted] = useState(null);
 
+  const handleChange = (e) => {
     setFormData({
       ...formData,
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(formData);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(formData);
 
-    alert("Form Submitted Successfully!");
-
-    // clear form
+    // Clear form
     setFormData({
       name: "",
       email: "",
@@ -34,49 +30,50 @@ function App() {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Dynamic Form Handling</h2>
+    <div style={{ padding: "30px" }}>
+      <h2>React Dynamic Form</h2>
 
       <form onSubmit={handleSubmit}>
-
         <input
           type="text"
           name="name"
-          placeholder="Enter Name"
+          placeholder="Name"
           value={formData.name}
           onChange={handleChange}
-        />
-
-        <br /><br />
+          required
+        /><br /><br />
 
         <input
           type="email"
           name="email"
-          placeholder="Enter Email"
+          placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-        />
-
-        <br /><br />
+          required
+        /><br /><br />
 
         <input
           type="password"
           name="password"
-          placeholder="Enter Password"
+          placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-        />
-
-        <br /><br />
+          required
+        /><br /><br />
 
         <button type="submit">Submit</button>
-
       </form>
 
-      <h3>Current Form Data</h3>
-      <p>Name: {formData.name}</p>
-      <p>Email: {formData.email}</p>
+      <hr />
 
+      {submitted && (
+        <div>
+          <h3>Submitted Data</h3>
+          <p><b>Name:</b> {submitted.name}</p>
+          <p><b>Email:</b> {submitted.email}</p>
+          <p><b>Password:</b> {submitted.password}</p>
+        </div>
+      )}
     </div>
   );
 }

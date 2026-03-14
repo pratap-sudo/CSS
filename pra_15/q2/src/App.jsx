@@ -1,24 +1,23 @@
-import React, { useState } from "react";
-import Child from "./Child";
+import React, { useState } from "react"; function Child(props) {
+return (
+<button onClick={props.increment}> Increase Counter
+</button>
+);
+}
 
 function App() {
 
-  const [count, setCount] = useState(0);
+const [count, setCount] = useState(0);
 
-  // Function to update counter
-  const increaseCount = () => {
-    setCount(count + 1);
-  };
+function increaseCount() { setCount(count + 1);
+}
 
-  return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Counter Value: {count}</h2>
-
-      {/* Passing function to child */}
-      <Child updateCounter={increaseCount} />
-
-    </div>
-  );
+return (
+<div style={{ padding: "30px" }}>
+<h2>Counter: {count}</h2>
+<Child increment={increaseCount} />
+</div>
+);
 }
 
 export default App;

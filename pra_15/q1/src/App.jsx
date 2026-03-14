@@ -1,22 +1,22 @@
 import React from "react";
-import Child from "./Child";
+
+function Child(props) { return (
+<button onClick={() => props.greet("pratap", 121)}> Click Me
+</button>
+);
+}
 
 function App() {
 
-  // Function with multiple arguments
-  const showMessage = (name, age) => {
-    alert("Name: " + name + " Age: " + age);
-  };
+function showDetails(name, roll) { alert("Name: " + name + "\nRoll No: " + roll);
+}
 
-  return (
-    <div>
-      <h2>Passing Function Arguments in React</h2>
-
-      {/* Passing function as prop */}
-      <Child sendData={showMessage} />
-
-    </div>
-  );
+return (
+<div style={{ padding: "30px" }}>
+<h2>Multiple Arguments Example</h2>
+<Child greet={showDetails} />
+</div>
+);
 }
 
 export default App;

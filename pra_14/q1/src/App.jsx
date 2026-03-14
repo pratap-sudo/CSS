@@ -1,87 +1,41 @@
-import React, { useState } from "react";
-
-function App() {
-
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: ""
-  });
-
-  const [submittedData, setSubmittedData] = useState(null);
-
-  // Handle input change
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
+import React, { useState } from "react"; function App() {
+  const [formData, setFormData] = useState({ name: "", email: "", password: "" });
+  const [submitted, setSubmitted] = useState(null); const handleChange = (e) => {
     setFormData({
       ...formData,
-      [name]: value
+      [e.target.name]: e.target.value
     });
   };
-
-  // Handle form submit
   const handleSubmit = (e) => {
-    e.preventDefault();
-
-    setSubmittedData(formData);
-
-    // Clear form
-    setFormData({
-      name: "",
-      email: "",
-      password: ""
-    });
+    e.preventDefault(); setSubmitted(formData);
+    setFormData({ name: "", email: "", password: "" });
   };
-
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Registration Form</h2>
-
+    <div style={{ padding: "30px" }}>
+      <h2>React Dynamic Form</h2>
       <form onSubmit={handleSubmit}>
+        <input type="text" name="name" placeholder="Name" value={formData.name} onChange={handleChange} required />
 
-        <input
-          type="text"
-          name="name"
-          placeholder="Enter Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
+        <br /><br />
+        <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} required /><br /><br />
+
+        <input type="password" name="password" placeholder="Password" value={formData.password} onChange={handleChange} required />
 
         <br /><br />
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Enter Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <br /><br />
-
-        <button type="submit">Register</button>
-
+        <button type="submit">Submit</button>
       </form>
 
-      {submittedData && (
+      <hr />
+
+      {submitted && (
         <div>
           <h3>Submitted Data</h3>
-          <p>Name: {submittedData.name}</p>
-          <p>Email: {submittedData.email}</p>
+          <p><b>Name:</b> {submitted.name}</p>
+          <p><b>Email:</b> {submitted.email}</p>
+          <p><b>Password:</b> {submitted.password}</p>
         </div>
       )}
-
     </div>
   );
 }
